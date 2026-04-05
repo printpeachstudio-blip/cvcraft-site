@@ -20,7 +20,6 @@
   html { scroll-behavior: smooth; }
   body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
 
-  /* NAV */
   nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; border-bottom: 1px solid var(--cream); background: var(--paper); position: sticky; top: 0; z-index: 100; }
   .logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
   .logo span { color: var(--gold); }
@@ -28,7 +27,6 @@
   nav a:hover { color: var(--ink); }
   .nav-cta { background: var(--ink) !important; color: var(--paper) !important; padding: 0.5rem 1.25rem; border-radius: 4px; font-weight: 500; }
 
-  /* HERO */
   .hero { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; text-align: center; }
   .hero-eyebrow { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.5rem; }
   .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1.5rem; }
@@ -42,11 +40,9 @@
   .hero-social { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
   .hero-social strong { color: var(--ink); }
 
-  /* DIVIDER */
   .divider { text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .divider::before, .divider::after { content: '——'; margin: 0 1rem; color: var(--cream); }
 
-  /* HOW IT WORKS */
   .section { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
   .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
   .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
@@ -58,14 +54,13 @@
   .step h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
   .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
-  /* PRICING */
   .pricing-bg { background: var(--ink); color: var(--paper); padding: 5rem 2rem; margin: 3rem 0; }
   .pricing-inner { max-width: 900px; margin: 0 auto; text-align: center; }
   .pricing-inner .section-label { color: var(--gold-light); }
   .pricing-inner .section-title { color: var(--paper); }
   .pricing-inner .section-sub { color: rgba(247,244,238,0.6); margin: 0 auto; }
   .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .price-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 2.5rem 2rem; text-align: left; position: relative; transition: border-color 0.2s; }
+  .price-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 2.5rem 2rem; text-align: left; position: relative; }
   .price-card.featured { border-color: var(--gold); background: rgba(184,134,11,0.08); }
   .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--paper); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
   .price-card h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.5rem; }
@@ -75,10 +70,9 @@
   .price-features { list-style: none; font-size: 0.9rem; color: rgba(247,244,238,0.8); }
   .price-features li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .price-features li::before { content: '✓ '; color: var(--gold-light); font-weight: 600; }
-  .btn-gold { display: inline-block; margin-top: 1.75rem; background: var(--gold); color: var(--paper); padding: 0.8rem 1.75rem; border-radius: 4px; font-weight: 500; cursor: pointer; border: none; font-size: 0.95rem; width: 100%; text-align: center; transition: background 0.2s; }
+  .btn-gold { display: inline-block; margin-top: 1.75rem; background: var(--gold); color: var(--paper); padding: 0.8rem 1.75rem; border-radius: 4px; font-weight: 500; cursor: pointer; border: none; font-size: 0.95rem; width: 100%; text-align: center; transition: background 0.2s; font-family: var(--sans); }
   .btn-gold:hover { background: var(--gold-light); }
 
-  /* TESTIMONIALS */
   .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
   .testimonial { background: white; border: 1px solid var(--cream); border-radius: 8px; padding: 2rem; }
   .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
@@ -88,7 +82,6 @@
   .author-name { font-size: 0.85rem; font-weight: 500; }
   .author-role { font-size: 0.75rem; color: var(--muted); }
 
-  /* FAQ */
   .faq { max-width: 720px; margin: 3rem auto 0; }
   .faq-item { border-bottom: 1px solid var(--cream); }
   .faq-q { width: 100%; background: none; border: none; text-align: left; font-family: var(--sans); font-size: 1rem; font-weight: 500; padding: 1.25rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink); }
@@ -97,16 +90,13 @@
   .faq-a { max-height: 0; overflow: hidden; font-size: 0.9rem; color: var(--muted); line-height: 1.8; transition: max-height 0.3s ease, padding 0.3s; }
   .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.25rem; }
 
-  /* CTA BAND */
   .cta-band { background: var(--cream); text-align: center; padding: 5rem 2rem; }
   .cta-band h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
   .cta-band p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; font-weight: 300; }
 
-  /* FOOTER */
   footer { background: var(--ink); color: rgba(247,244,238,0.5); text-align: center; padding: 2rem; font-size: 0.8rem; }
   footer strong { color: rgba(247,244,238,0.8); }
 
-  /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.7); z-index: 999; align-items: center; justify-content: center; padding: 1rem; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--paper); border-radius: 12px; max-width: 520px; width: 100%; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
@@ -136,7 +126,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <p class="hero-eyebrow">AI-Powered Career Documents</p>
   <h1>Your CV,<br><em>brilliantly</em> rewritten<br>in minutes.</h1>
@@ -150,7 +139,6 @@
 
 <div class="divider">How it works</div>
 
-<!-- HOW IT WORKS -->
 <div class="section" id="how">
   <p class="section-label">Simple process</p>
   <h2 class="section-title">Three steps to a<br>job-winning document</h2>
@@ -174,11 +162,10 @@
   </div>
 </div>
 
-<!-- PRICING -->
 <div class="pricing-bg" id="pricing">
   <div class="pricing-inner">
     <p class="section-label">Straightforward pricing</p>
-    <h2 class="section-title" style="color: #f7f4ee;">Pay once. No subscription.</h2>
+    <h2 class="section-title">Pay once. No subscription.</h2>
     <p class="section-sub">Get a professional, tailored document without the £300 career consultant fee.</p>
     <div class="pricing-cards">
       <div class="price-card">
@@ -224,7 +211,6 @@
   </div>
 </div>
 
-<!-- TESTIMONIALS -->
 <div class="section">
   <p class="section-label">Reviews</p>
   <h2 class="section-title">People getting interviews</h2>
@@ -234,10 +220,7 @@
       <p>"Got three interview requests within a week of using my new CV. The tailoring to the job description was spot-on — I'd been applying for months with my old one."</p>
       <div class="testimonial-author">
         <div class="avatar">SK</div>
-        <div>
-          <div class="author-name">Sarah K.</div>
-          <div class="author-role">Marketing Manager, London</div>
-        </div>
+        <div><div class="author-name">Sarah K.</div><div class="author-role">Marketing Manager, London</div></div>
       </div>
     </div>
     <div class="testimonial">
@@ -245,10 +228,7 @@
       <p>"Honestly shocked at the quality. It read like a real professional wrote it — not generic AI text at all. Worth every penny for a £40k job application."</p>
       <div class="testimonial-author">
         <div class="avatar">JM</div>
-        <div>
-          <div class="author-name">James M.</div>
-          <div class="author-role">Software Developer, Manchester</div>
-        </div>
+        <div><div class="author-name">James M.</div><div class="author-role">Software Developer, Manchester</div></div>
       </div>
     </div>
     <div class="testimonial">
@@ -256,16 +236,12 @@
       <p>"I was career-changing from teaching to tech and had no idea how to frame my experience. The rewrite made my transferable skills shine. Got the job."</p>
       <div class="testimonial-author">
         <div class="avatar">RP</div>
-        <div>
-          <div class="author-name">Riya P.</div>
-          <div class="author-role">UX Designer, Bristol</div>
-        </div>
+        <div><div class="author-name">Riya P.</div><div class="author-role">UX Designer, Bristol</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FAQ -->
 <div class="section" id="faq" style="padding-top: 0;">
   <p class="section-label">Questions</p>
   <h2 class="section-title">Common questions</h2>
@@ -293,19 +269,16 @@
   </div>
 </div>
 
-<!-- CTA BAND -->
 <div class="cta-band">
   <h2>Ready to land more interviews?</h2>
   <p>Join hundreds of job seekers who upgraded their applications this month.</p>
   <button class="btn-primary" onclick="openModal('bundle')" style="font-size: 1rem; padding: 1rem 2.5rem;">Get started from £6.99</button>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <strong>CVCraft AI</strong> &nbsp;·&nbsp; Powered by artificial intelligence &nbsp;·&nbsp; contact@cvcraft-ai.co.uk &nbsp;·&nbsp; © 2026
 </footer>
 
-<!-- ORDER MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
@@ -319,14 +292,6 @@
       <label>Email address</label>
       <input type="email" placeholder="jane@email.com" id="f-email" />
     </div>
-    <div class="form-group">
-      <label>Your current CV (paste text or describe experience)</label>
-      <textarea placeholder="Paste your current CV here, or describe your experience and work history..." id="f-cv"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Job description you're applying for</label>
-      <textarea placeholder="Paste the job posting here..." id="f-job" style="min-height: 80px;"></textarea>
-    </div>
     <div class="price-summary">
       <span id="modal-product">CV Rewrite</span>
       <strong id="modal-price">£9.99</strong>
@@ -337,13 +302,22 @@
 </div>
 
 <script>
-const products = {
-  cv: { title: 'Rewrite my CV', sub: "Fill in the details below and we'll deliver your new CV to your inbox within 30 minutes.", product: 'CV Rewrite', price: '£9.99' },
-  cover: { title: 'Get my cover letter', sub: "Tell us about the role and we'll craft a compelling cover letter tailored to the job.", product: 'Cover Letter', price: '£6.99' },
-  bundle: { title: 'CV + Cover Letter bundle', sub: "The complete application package. Fill in once and we'll handle both documents.", product: 'CV + Cover Letter Bundle', price: '£14.99' }
+const stripeLinks = {
+  cv: 'https://buy.stripe.com/3cI28k80FgD0gYk7NO3AY00',
+  cover: 'https://buy.stripe.com/3cI14g4Ot5Ym23qecc3AY01',
+  bundle: 'https://buy.stripe.com/5kQ00cep3cmK9vS8RS3AY02'
 };
 
+const products = {
+  cv: { title: 'Rewrite my CV', sub: "Fill in your details and we'll deliver your new CV within 30 minutes.", product: 'CV Rewrite', price: '£9.99' },
+  cover: { title: 'Get my cover letter', sub: "Fill in your details and we'll craft a compelling cover letter for your role.", product: 'Cover Letter', price: '£6.99' },
+  bundle: { title: 'CV + Cover Letter bundle', sub: "The complete application package, delivered within the hour.", product: 'CV + Cover Letter Bundle', price: '£14.99' }
+};
+
+let currentType = 'cv';
+
 function openModal(type) {
+  currentType = type;
   const p = products[type];
   document.getElementById('modal-title').textContent = p.title;
   document.getElementById('modal-sub').textContent = p.sub;
@@ -360,7 +334,7 @@ function handleOrder() {
   const name = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
   if (!name || !email) { alert('Please enter your name and email address.'); return; }
-  alert('In the live version, this sends you to a Stripe checkout page. Once payment is confirmed, your document is generated and emailed to you automatically.');
+  window.open(stripeLinks[currentType]);
 }
 
 function toggleFaq(btn) {
