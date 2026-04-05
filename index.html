@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVCraft AI — Land Your Dream Job</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a18;
+    --paper: #f7f4ee;
+    --cream: #ede9e0;
+    --gold: #b8860b;
+    --gold-light: #d4a017;
+    --muted: #6b6860;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; border-bottom: 1px solid var(--cream); background: var(--paper); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
+  .logo span { color: var(--gold); }
+  nav a { font-size: 0.9rem; color: var(--muted); text-decoration: none; margin-left: 2rem; transition: color 0.2s; }
+  nav a:hover { color: var(--ink); }
+  .nav-cta { background: var(--ink) !important; color: var(--paper) !important; padding: 0.5rem 1.25rem; border-radius: 4px; font-weight: 500; }
+
+  /* HERO */
+  .hero { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; text-align: center; }
+  .hero-eyebrow { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1.5rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; font-weight: 300; line-height: 1.8; }
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: var(--paper); padding: 0.875rem 2.25rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 1rem; transition: opacity 0.2s; cursor: pointer; border: none; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost { background: transparent; color: var(--ink); padding: 0.875rem 2.25rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 1rem; border: 1.5px solid var(--ink); transition: all 0.2s; cursor: pointer; }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .hero-social { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  .hero-social strong { color: var(--ink); }
+
+  /* DIVIDER */
+  .divider { text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .divider::before, .divider::after { content: '——'; margin: 0 1rem; color: var(--cream); }
+
+  /* HOW IT WORKS */
+  .section { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
+  .section-sub { color: var(--muted); font-weight: 300; max-width: 520px; font-size: 1.05rem; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 3.5rem; }
+  .step { padding: 2rem; background: white; border: 1px solid var(--cream); border-radius: 8px; }
+  .step-num { font-family: var(--serif); font-size: 3rem; font-weight: 900; color: var(--cream); line-height: 1; margin-bottom: 1rem; }
+  .step h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  /* PRICING */
+  .pricing-bg { background: var(--ink); color: var(--paper); padding: 5rem 2rem; margin: 3rem 0; }
+  .pricing-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .pricing-inner .section-label { color: var(--gold-light); }
+  .pricing-inner .section-title { color: var(--paper); }
+  .pricing-inner .section-sub { color: rgba(247,244,238,0.6); margin: 0 auto; }
+  .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .price-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 2.5rem 2rem; text-align: left; position: relative; transition: border-color 0.2s; }
+  .price-card.featured { border-color: var(--gold); background: rgba(184,134,11,0.08); }
+  .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--paper); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+  .price-card h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .price { font-family: var(--serif); font-size: 3rem; font-weight: 900; line-height: 1; margin: 1rem 0; }
+  .price sup { font-size: 1.5rem; vertical-align: super; }
+  .price-desc { font-size: 0.85rem; color: rgba(247,244,238,0.55); margin-bottom: 1.5rem; }
+  .price-features { list-style: none; font-size: 0.9rem; color: rgba(247,244,238,0.8); }
+  .price-features li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .price-features li::before { content: '✓ '; color: var(--gold-light); font-weight: 600; }
+  .btn-gold { display: inline-block; margin-top: 1.75rem; background: var(--gold); color: var(--paper); padding: 0.8rem 1.75rem; border-radius: 4px; font-weight: 500; cursor: pointer; border: none; font-size: 0.95rem; width: 100%; text-align: center; transition: background 0.2s; }
+  .btn-gold:hover { background: var(--gold-light); }
+
+  /* TESTIMONIALS */
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .testimonial { background: white; border: 1px solid var(--cream); border-radius: 8px; padding: 2rem; }
+  .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
+  .testimonial p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-style: italic; margin-bottom: 1.25rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--muted); flex-shrink: 0; }
+  .author-name { font-size: 0.85rem; font-weight: 500; }
+  .author-role { font-size: 0.75rem; color: var(--muted); }
+
+  /* FAQ */
+  .faq { max-width: 720px; margin: 3rem auto 0; }
+  .faq-item { border-bottom: 1px solid var(--cream); }
+  .faq-q { width: 100%; background: none; border: none; text-align: left; font-family: var(--sans); font-size: 1rem; font-weight: 500; padding: 1.25rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--ink); }
+  .faq-q::after { content: '+'; font-size: 1.25rem; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; font-size: 0.9rem; color: var(--muted); line-height: 1.8; transition: max-height 0.3s ease, padding 0.3s; }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1.25rem; }
+
+  /* CTA BAND */
+  .cta-band { background: var(--cream); text-align: center; padding: 5rem 2rem; }
+  .cta-band h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+  .cta-band p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; font-weight: 300; }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: rgba(247,244,238,0.5); text-align: center; padding: 2rem; font-size: 0.8rem; }
+  footer strong { color: rgba(247,244,238,0.8); }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,24,0.7); z-index: 999; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--paper); border-radius: 12px; max-width: 520px; width: 100%; padding: 2.5rem; position: relative; max-height: 90vh; overflow-y: auto; }
+  .modal-close { position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
+  .modal h2 { font-family: var(--serif); font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .modal-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  label { display: block; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; color: var(--muted); }
+  input, textarea, select { width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid var(--cream); border-radius: 4px; font-family: var(--sans); font-size: 0.95rem; background: white; color: var(--ink); outline: none; transition: border-color 0.2s; }
+  input:focus, textarea:focus, select:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 100px; }
+  .price-summary { background: var(--cream); border-radius: 6px; padding: 1rem 1.25rem; margin: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; }
+  .price-summary span { font-size: 0.85rem; color: var(--muted); }
+  .price-summary strong { font-family: var(--serif); font-size: 1.5rem; }
+  .secure-note { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">CV<span>Craft</span> AI</div>
+  <div>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" class="nav-cta" onclick="openModal('cv'); return false;">Get started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">AI-Powered Career Documents</p>
+  <h1>Your CV,<br><em>brilliantly</em> rewritten<br>in minutes.</h1>
+  <p>Beat the applicant tracking systems. Impress hiring managers. Land more interviews — with a CV tailored exactly to the role you want.</p>
+  <div class="hero-buttons">
+    <button class="btn-primary" onclick="openModal('cv')">Rewrite my CV — £9.99</button>
+    <button class="btn-ghost" onclick="openModal('cover')">Cover letter — £6.99</button>
+  </div>
+  <p class="hero-social"><strong>340+</strong> job seekers helped this month &nbsp;·&nbsp; <strong>4.9★</strong> average rating</p>
+</div>
+
+<div class="divider">How it works</div>
+
+<!-- HOW IT WORKS -->
+<div class="section" id="how">
+  <p class="section-label">Simple process</p>
+  <h2 class="section-title">Three steps to a<br>job-winning document</h2>
+  <p class="section-sub">No back-and-forth. No waiting days. Just paste, pay, and receive your polished document.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Paste your current CV</h3>
+      <p>Share your existing CV or just tell us your experience. No formatting required — rough notes are fine.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Tell us the role</h3>
+      <p>Paste the job description you're applying for. Our AI tailors every line to match what employers want.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Receive your document</h3>
+      <p>Within minutes, you'll receive a polished, ATS-optimised CV or cover letter via email. Ready to send.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-bg" id="pricing">
+  <div class="pricing-inner">
+    <p class="section-label">Straightforward pricing</p>
+    <h2 class="section-title" style="color: #f7f4ee;">Pay once. No subscription.</h2>
+    <p class="section-sub">Get a professional, tailored document without the £300 career consultant fee.</p>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <h3>Cover Letter</h3>
+        <div class="price"><sup>£</sup>6.99</div>
+        <p class="price-desc">Per letter, tailored to the role</p>
+        <ul class="price-features">
+          <li>ATS-optimised language</li>
+          <li>Matched to job description</li>
+          <li>Delivered within 30 mins</li>
+          <li>Word & PDF formats</li>
+        </ul>
+        <button class="btn-gold" onclick="openModal('cover')">Get my cover letter</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most popular</div>
+        <h3>Full CV Rewrite</h3>
+        <div class="price"><sup>£</sup>9.99</div>
+        <p class="price-desc">Complete rewrite, role-targeted</p>
+        <ul class="price-features">
+          <li>ATS keyword optimisation</li>
+          <li>Tailored to your target role</li>
+          <li>Professional formatting</li>
+          <li>Delivered within 30 mins</li>
+          <li>Word & PDF formats</li>
+        </ul>
+        <button class="btn-gold" onclick="openModal('cv')">Rewrite my CV</button>
+      </div>
+      <div class="price-card">
+        <h3>CV + Cover Letter</h3>
+        <div class="price"><sup>£</sup>14.99</div>
+        <p class="price-desc">Best value — complete application</p>
+        <ul class="price-features">
+          <li>Everything in both plans</li>
+          <li>Perfectly matched tone</li>
+          <li>Priority delivery</li>
+          <li>1 free revision</li>
+          <li>Word & PDF formats</li>
+        </ul>
+        <button class="btn-gold" onclick="openModal('bundle')">Get the bundle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section">
+  <p class="section-label">Reviews</p>
+  <h2 class="section-title">People getting interviews</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Got three interview requests within a week of using my new CV. The tailoring to the job description was spot-on — I'd been applying for months with my old one."</p>
+      <div class="testimonial-author">
+        <div class="avatar">SK</div>
+        <div>
+          <div class="author-name">Sarah K.</div>
+          <div class="author-role">Marketing Manager, London</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Honestly shocked at the quality. It read like a real professional wrote it — not generic AI text at all. Worth every penny for a £40k job application."</p>
+      <div class="testimonial-author">
+        <div class="avatar">JM</div>
+        <div>
+          <div class="author-name">James M.</div>
+          <div class="author-role">Software Developer, Manchester</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"I was career-changing from teaching to tech and had no idea how to frame my experience. The rewrite made my transferable skills shine. Got the job."</p>
+      <div class="testimonial-author">
+        <div class="avatar">RP</div>
+        <div>
+          <div class="author-name">Riya P.</div>
+          <div class="author-role">UX Designer, Bristol</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" id="faq" style="padding-top: 0;">
+  <p class="section-label">Questions</p>
+  <h2 class="section-title">Common questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How is this different from ChatGPT?</button>
+      <p class="faq-a">We use a specialist prompt system built specifically for UK job applications, trained on what hiring managers and ATS systems actually look for. You won't get generic output — you get a targeted document that sounds like you.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How quickly will I receive my document?</button>
+      <p class="faq-a">Most orders are fulfilled within 15–30 minutes. Bundle orders with revisions are typically done within an hour.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What format will my CV be in?</button>
+      <p class="faq-a">You'll receive both a Word (.docx) file you can edit freely, and a polished PDF ready to send directly to employers.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is my information kept private?</button>
+      <p class="faq-a">Absolutely. Your CV and personal details are used solely to create your document and are never shared or stored beyond 30 days.</p>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What if I'm not happy with the result?</button>
+      <p class="faq-a">Bundle customers get one free revision. For individual purchases, reach out within 48 hours and we'll work with you to get it right.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to land more interviews?</h2>
+  <p>Join hundreds of job seekers who upgraded their applications this month.</p>
+  <button class="btn-primary" onclick="openModal('bundle')" style="font-size: 1rem; padding: 1rem 2.5rem;">Get started from £6.99</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>CVCraft AI</strong> &nbsp;·&nbsp; Powered by artificial intelligence &nbsp;·&nbsp; contact@cvcraft-ai.co.uk &nbsp;·&nbsp; © 2026
+</footer>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modal-title">Rewrite my CV</h2>
+    <p class="modal-sub" id="modal-sub">Fill in the details below and we'll deliver your new CV to your inbox.</p>
+    <div class="form-group">
+      <label>Your name</label>
+      <input type="text" placeholder="Jane Smith" id="f-name" />
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" placeholder="jane@email.com" id="f-email" />
+    </div>
+    <div class="form-group">
+      <label>Your current CV (paste text or describe experience)</label>
+      <textarea placeholder="Paste your current CV here, or describe your experience and work history..." id="f-cv"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Job description you're applying for</label>
+      <textarea placeholder="Paste the job posting here..." id="f-job" style="min-height: 80px;"></textarea>
+    </div>
+    <div class="price-summary">
+      <span id="modal-product">CV Rewrite</span>
+      <strong id="modal-price">£9.99</strong>
+    </div>
+    <button class="btn-primary" style="width:100%; font-size:1rem; padding: 0.9rem;" onclick="handleOrder()">Pay securely with Stripe →</button>
+    <p class="secure-note">🔒 Secure payment via Stripe &nbsp;·&nbsp; Visa, Mastercard, Apple Pay accepted</p>
+  </div>
+</div>
+
+<script>
+const products = {
+  cv: { title: 'Rewrite my CV', sub: "Fill in the details below and we'll deliver your new CV to your inbox within 30 minutes.", product: 'CV Rewrite', price: '£9.99' },
+  cover: { title: 'Get my cover letter', sub: "Tell us about the role and we'll craft a compelling cover letter tailored to the job.", product: 'Cover Letter', price: '£6.99' },
+  bundle: { title: 'CV + Cover Letter bundle', sub: "The complete application package. Fill in once and we'll handle both documents.", product: 'CV + Cover Letter Bundle', price: '£14.99' }
+};
+
+function openModal(type) {
+  const p = products[type];
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-sub').textContent = p.sub;
+  document.getElementById('modal-product').textContent = p.product;
+  document.getElementById('modal-price').textContent = p.price;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+function handleOrder() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!name || !email) { alert('Please enter your name and email address.'); return; }
+  alert('In the live version, this sends you to a Stripe checkout page. Once payment is confirmed, your document is generated and emailed to you automatically.');
+}
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>

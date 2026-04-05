@@ -1,0 +1,360 @@
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);background:var(--color-background-tertiary)}
+.app{display:grid;grid-template-columns:260px 1fr;min-height:600px}
+.sidebar{background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);padding:1.5rem 1rem}
+.sidebar-logo{font-size:15px;font-weight:500;padding-bottom:1.25rem;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:1.25rem;color:var(--color-text-primary)}
+.sidebar-logo span{color:#b8860b}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary);transition:background 0.15s;margin-bottom:2px}
+.nav-item:hover{background:var(--color-background-secondary)}
+.nav-item.active{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:500}
+.nav-icon{width:16px;height:16px;flex-shrink:0;opacity:0.6}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:1.5rem;padding-top:1.25rem;border-top:0.5px solid var(--color-border-tertiary)}
+.stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.stat-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px}
+.stat-val{font-size:20px;font-weight:500}
+.stat-val.green{color:var(--color-text-success)}
+.main{padding:2rem;overflow:auto}
+.page{display:none}
+.page.active{display:block}
+.page-title{font-size:18px;font-weight:500;margin-bottom:4px}
+.page-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:1.5rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:13px;font-weight:500;margin-bottom:1rem;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;color:var(--color-text-secondary);margin-bottom:5px;font-weight:500}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:8px 10px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-family:var(--font-sans);font-size:13px;background:var(--color-background-primary);color:var(--color-text-primary);outline:none;transition:border-color 0.15s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#b8860b}
+.form-group textarea{resize:vertical;min-height:90px;line-height:1.6}
+.btn{padding:8px 16px;border-radius:var(--border-radius-md);font-family:var(--font-sans);font-size:13px;font-weight:500;cursor:pointer;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);transition:all 0.15s}
+.btn:hover{background:var(--color-background-secondary)}
+.btn-primary{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.btn-primary:hover{opacity:0.85}
+.btn-gold{background:#b8860b;color:#fff;border-color:#b8860b;width:100%;padding:10px;font-size:14px}
+.btn-gold:hover{background:#9a720a}
+.btn-gold:disabled{opacity:0.5;cursor:not-allowed}
+.output-area{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1.25rem;min-height:200px;font-size:13px;line-height:1.8;color:var(--color-text-primary);white-space:pre-wrap;font-family:var(--font-sans)}
+.output-area.empty{color:var(--color-text-tertiary);font-style:italic}
+.status-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--border-radius-md);font-size:12px;margin-bottom:12px}
+.status-bar.generating{background:var(--color-background-info);color:var(--color-text-info)}
+.status-bar.done{background:var(--color-background-success);color:var(--color-text-success)}
+.status-bar.error{background:var(--color-background-danger);color:var(--color-text-danger)}
+.pulse{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.order-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.order-row:last-child{border-bottom:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.badge.pending{background:var(--color-background-warning);color:var(--color-text-warning)}
+.badge.done{background:var(--color-background-success);color:var(--color-text-success)}
+.copy-row{display:flex;gap:8px;margin-top:10px}
+.divider-line{height:0.5px;background:var(--color-border-tertiary);margin:1rem 0}
+.api-note{font-size:12px;color:var(--color-text-secondary);padding:10px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);margin-bottom:12px;line-height:1.6}
+</style>
+
+<div class="app">
+<div class="sidebar">
+  <div class="sidebar-logo">CV<span>Craft</span> AI &mdash; Admin</div>
+  <div class="nav-item active" onclick="showPage('generate',this)">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5h6M5 11h4"/></svg>
+    Generate document
+  </div>
+  <div class="nav-item" onclick="showPage('orders',this)">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h5"/></svg>
+    Orders
+  </div>
+  <div class="nav-item" onclick="showPage('settings',this)">
+    <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.5"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.5 3.5l1 1M11.5 11.5l1 1M3.5 12.5l1-1M11.5 4.5l1-1"/></svg>
+    Settings
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Orders today</div><div class="stat-val" id="stat-orders">0</div></div>
+    <div class="stat"><div class="stat-label">Revenue</div><div class="stat-val green" id="stat-rev">£0</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="page active" id="page-generate">
+    <div class="page-title">Generate document</div>
+    <div class="page-sub">Paste a customer's order details and generate their CV or cover letter instantly.</div>
+
+    <div class="api-note">
+      Enter your Anthropic API key in Settings first. The document is generated live using Claude AI and ready to copy and email to your customer.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Customer order</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Customer name</label>
+          <input type="text" id="cust-name" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>Customer email</label>
+          <input type="email" id="cust-email" placeholder="jane@email.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Document type</label>
+          <select id="doc-type">
+            <option value="cv">CV rewrite (£9.99)</option>
+            <option value="cover">Cover letter (£6.99)</option>
+            <option value="bundle">CV + Cover letter (£14.99)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Target job title</label>
+          <input type="text" id="job-title" placeholder="e.g. Marketing Manager" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Customer's current CV / experience (paste their text)</label>
+        <textarea id="cust-cv" placeholder="Paste their CV text here, or a summary of their experience and work history..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Job description they're applying for</label>
+        <textarea id="job-desc" placeholder="Paste the job posting or key requirements..."></textarea>
+      </div>
+      <button class="btn btn-gold" id="gen-btn" onclick="generateDoc()">Generate document with AI</button>
+    </div>
+
+    <div id="status-container"></div>
+
+    <div class="card" id="output-card" style="display:none">
+      <div class="card-title">Generated document</div>
+      <div class="output-area" id="output-content"></div>
+      <div class="copy-row">
+        <button class="btn" onclick="copyOutput()">Copy to clipboard</button>
+        <button class="btn btn-primary" onclick="markDone()">Mark as delivered</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-orders">
+    <div class="page-title">Orders</div>
+    <div class="page-sub">Track your customer orders and delivery status.</div>
+    <div class="card">
+      <div class="card-title">Recent orders</div>
+      <div id="orders-list">
+        <div style="font-size:13px;color:var(--color-text-tertiary);font-style:italic;padding:1rem 0">No orders yet. Generate your first document to see it here.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-settings">
+    <div class="page-title">Settings</div>
+    <div class="page-sub">Configure your API key and business details.</div>
+    <div class="card">
+      <div class="card-title">Anthropic API key</div>
+      <div class="form-group">
+        <label>API key</label>
+        <input type="password" id="api-key-input" placeholder="sk-ant-..." />
+      </div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.6">
+        Get your API key from console.anthropic.com. Each CV generation costs approximately £0.01–0.03 in API credits, so your profit margin is ~98%.
+      </div>
+      <button class="btn btn-primary" onclick="saveKey()">Save API key</button>
+      <span id="key-saved" style="font-size:12px;color:var(--color-text-success);margin-left:10px;display:none">Saved!</span>
+    </div>
+    <div class="card">
+      <div class="card-title">Business details</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Business name</label>
+          <input type="text" value="CVCraft AI" />
+        </div>
+        <div class="form-group">
+          <label>Reply-from email</label>
+          <input type="text" placeholder="contact@cvcraft-ai.co.uk" />
+        </div>
+      </div>
+      <button class="btn btn-primary">Save details</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+let orders = [];
+let totalRev = 0;
+const prices = {cv: 9.99, cover: 6.99, bundle: 14.99};
+
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function getApiKey() {
+  return document.getElementById('api-key-input').value.trim() || localStorage.getItem('cvcraft_key') || '';
+}
+
+function saveKey() {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (k) {
+    localStorage.setItem('cvcraft_key', k);
+    const s = document.getElementById('key-saved');
+    s.style.display = 'inline';
+    setTimeout(() => s.style.display = 'none', 2000);
+  }
+}
+
+function setStatus(type, msg) {
+  const c = document.getElementById('status-container');
+  if (!type) { c.innerHTML = ''; return; }
+  c.innerHTML = `<div class="status-bar ${type}"><div class="pulse"></div>${msg}</div>`;
+}
+
+async function generateDoc() {
+  const name = document.getElementById('cust-name').value.trim();
+  const email = document.getElementById('cust-email').value.trim();
+  const cv = document.getElementById('cust-cv').value.trim();
+  const job = document.getElementById('job-desc').value.trim();
+  const jobTitle = document.getElementById('job-title').value.trim();
+  const type = document.getElementById('doc-type').value;
+  const apiKey = getApiKey();
+
+  if (!name || !cv) { setStatus('error', 'Please enter customer name and their CV / experience.'); return; }
+  if (!apiKey) { setStatus('error', 'No API key found. Go to Settings and enter your Anthropic API key.'); return; }
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  document.getElementById('output-card').style.display = 'none';
+  setStatus('generating', 'Generating document with Claude AI — this takes 20–40 seconds...');
+
+  const prompts = {
+    cv: `You are an expert UK CV writer. Rewrite the following CV for ${name} to apply for the role of ${jobTitle || 'the target role'}.
+
+CUSTOMER'S CURRENT CV / EXPERIENCE:
+${cv}
+
+JOB DESCRIPTION:
+${job || 'Not provided — write a strong general CV for ' + (jobTitle || 'their field')}
+
+Write a complete, professional UK-style CV. Include:
+- Personal statement (3–4 lines, punchy, tailored to the role)
+- Key skills section (bullet points, ATS keywords from the job description)
+- Work experience (reverse chronological, achievement-focused bullet points with metrics where possible)
+- Education
+- Any relevant certifications or additional info
+
+Format it cleanly with clear section headings. Make it compelling, honest, and tailored. Do not invent qualifications — work with what's provided. Use UK English throughout.`,
+
+    cover: `You are an expert UK cover letter writer. Write a compelling cover letter for ${name} applying for the role of ${jobTitle || 'the target role'}.
+
+APPLICANT'S BACKGROUND:
+${cv}
+
+JOB DESCRIPTION:
+${job || 'Not provided — write a strong general cover letter for ' + (jobTitle || 'this field')}
+
+Write a professional UK cover letter (3–4 paragraphs, ~300 words). It should:
+- Open with a strong hook (not "I am writing to apply for")
+- Demonstrate genuine enthusiasm and fit for this specific role
+- Highlight 2–3 key achievements/skills that match the job
+- Close with a confident call to action
+- Sound natural and human, not AI-generated
+
+Use UK English. Format it as a proper letter.`,
+
+    bundle: `You are an expert UK career document writer. Create BOTH a full CV rewrite AND a cover letter for ${name} applying for: ${jobTitle || 'the target role'}.
+
+CUSTOMER'S CURRENT CV / EXPERIENCE:
+${cv}
+
+JOB DESCRIPTION:
+${job || 'Not provided — write strong documents for ' + (jobTitle || 'their field')}
+
+Provide:
+
+=== CV REWRITE ===
+A complete professional UK CV including personal statement, key skills, work experience, and education. ATS-optimised with keywords from the job description. Achievement-focused.
+
+=== COVER LETTER ===
+A compelling 3–4 paragraph cover letter (around 300 words). Strong opening, tailored to role, confident close.
+
+Use UK English throughout. Make both documents feel cohesive and tailored to the same role.`
+  };
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 2000,
+        messages: [{ role: 'user', content: prompts[type] }]
+      })
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json();
+      throw new Error(err.error?.message || 'API error ' + resp.status);
+    }
+
+    const data = await resp.json();
+    const text = data.content.map(b => b.text || '').join('');
+
+    document.getElementById('output-content').textContent = text;
+    document.getElementById('output-card').style.display = 'block';
+    setStatus('done', 'Document generated successfully! Copy it and email to ' + (email || 'your customer') + '.');
+
+    const order = { name, email, type, jobTitle, price: prices[type], status: 'pending', ts: new Date() };
+    orders.unshift(order);
+    updateStats(prices[type]);
+    renderOrders();
+
+  } catch(e) {
+    setStatus('error', 'Error: ' + e.message);
+  }
+
+  btn.disabled = false;
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-content').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy to clipboard', 2000);
+  });
+}
+
+function markDone() {
+  if (orders.length > 0) {
+    orders[0].status = 'done';
+    renderOrders();
+    setStatus('done', 'Marked as delivered. Great work!');
+  }
+}
+
+function updateStats(price) {
+  totalRev += price;
+  document.getElementById('stat-orders').textContent = orders.length;
+  document.getElementById('stat-rev').textContent = '£' + totalRev.toFixed(2);
+}
+
+function renderOrders() {
+  const list = document.getElementById('orders-list');
+  if (!orders.length) return;
+  const typeLabels = {cv: 'CV Rewrite', cover: 'Cover Letter', bundle: 'CV + Cover Letter'};
+  list.innerHTML = orders.map(o => `
+    <div class="order-row">
+      <div>
+        <div style="font-weight:500;font-size:13px">${o.name}</div>
+        <div style="font-size:12px;color:var(--color-text-secondary)">${o.email || 'No email'} &middot; ${typeLabels[o.type]}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:13px;font-weight:500">£${o.price.toFixed(2)}</span>
+        <span class="badge ${o.status}">${o.status === 'done' ? 'Delivered' : 'Pending'}</span>
+      </div>
+    </div>`).join('');
+}
+
+const saved = localStorage.getItem('cvcraft_key');
+if (saved) document.getElementById('api-key-input').value = saved;
+</script>
