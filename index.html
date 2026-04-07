@@ -504,22 +504,18 @@ async function submitAndPay() {
     cv_content: document.getElementById('f-cv').value.trim(),
     instructions: document.getElementById('f-instructions').value.trim() || 'None'
   };
-  try {
-    const resp = await fetch('https://formspree.io/f/xvzvdgby', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    if (resp.ok) {
-      document.getElementById('success-email').textContent = data.email;
-      goToStep('success');
-      setTimeout(() => window.open(stripeLinks[currentType]), 800);
-    } else { throw new Error(); }
-  } catch {
-    btn.disabled = false;
-    btn.innerHTML = 'Pay securely with Stripe →';
-    alert('Something went wrong. Please try again.');
-  }
+
+  // Send to Formspree in background — don't block payment on this
+  fetch('https://formspree.io/f/xvzvdgby', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(() => {});
+
+  // Always proceed to Stripe immediately regardless of Formspree result
+  document.getElementById('success-email').textContent = data.email;
+  goToStep('success');
+  setTimeout(() => { window.location.href = stripeLinks[currentType]; }, 800);
 }
 
 document.getElementById('f-cv').addEventListener('input', function() {
