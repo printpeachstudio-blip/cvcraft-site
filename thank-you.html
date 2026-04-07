@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — CVCraft AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18066674256"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18066674256');
+  gtag('event', 'conversion', {'send_to': 'AW-18066674256'});
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1a18; --paper: #f7f4ee; --cream: #ede9e0;
+    --gold: #b8860b; --muted: #6b6860;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 3rem; border-bottom: 1px solid var(--cream); background: var(--paper); }
+  .logo { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--gold); }
+  .main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 4rem 2rem; }
+  .card { max-width: 560px; width: 100%; text-align: center; }
+  .check-circle { width: 80px; height: 80px; border-radius: 50%; background: #d4edda; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+  .check-circle svg { width: 40px; height: 40px; }
+  h1 { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.15; }
+  .subtitle { font-size: 1.1rem; color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; line-height: 1.8; max-width: 440px; margin-left: auto; margin-right: auto; }
+  .steps { background: white; border: 1px solid var(--cream); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: left; }
+  .step { display: flex; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--cream); align-items: flex-start; }
+  .step:last-child { border-bottom: none; padding-bottom: 0; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--gold); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .step-text strong { color: var(--ink); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--ink); color: var(--paper); padding: 0.875rem 2.25rem; border-radius: 4px; font-weight: 500; font-size: 1rem; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .note { font-size: 0.8rem; color: var(--muted); margin-top: 1.5rem; }
+  footer { background: var(--ink); color: rgba(247,244,238,0.5); text-align: center; padding: 1.5rem; font-size: 0.8rem; }
+  footer strong { color: rgba(247,244,238,0.8); }
+  footer a { color: rgba(247,244,238,0.5); text-decoration: none; }
+  footer a:hover { color: rgba(247,244,238,0.9); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">CV<span>Craft</span> AI</a>
+</nav>
+
+<div class="main">
+  <div class="card">
+    <div class="check-circle">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 20L16 28L32 12" stroke="#28a745" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>Order confirmed!</h1>
+    <p class="subtitle">Thank you for your order. Your professionally rewritten document is on its way. Here's what happens next:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>We've received your details</strong> — your CV content and job description have been passed to our writing team.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Your document is being prepared</strong> — we'll tailor it specifically to the role you're applying for, with ATS optimisation built in.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Delivered within 24 hours</strong> — you'll receive your completed Word document and PDF by email. Check your spam folder if it doesn't arrive.</div>
+      </div>
+    </div>
+
+    <a href="index.html" class="btn-primary">Back to home</a>
+    <p class="note">Questions? Any issues with your order, simply reply to your confirmation email and we'll get back to you promptly.</p>
+  </div>
+</div>
+
+<footer>
+  <strong>CVCraft AI</strong> &nbsp;·&nbsp; © 2026 &nbsp;·&nbsp;
+  <a href="terms.html">Terms &amp; Conditions</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>
