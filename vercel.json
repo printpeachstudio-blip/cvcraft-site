@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you.html",
+      "destination": "/thank-you",
+      "permanent": false
+    }
+  ],
+  "cleanUrls": true
+}
