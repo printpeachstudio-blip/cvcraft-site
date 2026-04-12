@@ -210,6 +210,7 @@
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#pricing">Pricing</a>
+    <a href="blog/">Blog</a>
     <a href="#faq">FAQ</a>
     <a href="#" class="nav-cta" onclick="openModal('cv'); return false;">Get started</a>
   </div>
@@ -224,7 +225,7 @@
     <button class="btn-primary" onclick="openModal('cv')">Rewrite my CV — £9.99</button>
     <button class="btn-ghost" onclick="openModal('cover')">Cover letter — £6.99</button>
   </div>
-  <p class="hero-social"><strong>340+</strong> job seekers helped this month &nbsp;·&nbsp; <strong>4.9★</strong> average rating</p>
+  <p class="hero-social">No subscription &nbsp;·&nbsp; Pay once &nbsp;·&nbsp; Delivered within 24 hours &nbsp;·&nbsp; <strong>4.9★</strong> on Trustpilot</p>
 </div>
 
 <div class="divider">How it works</div>
@@ -306,7 +307,8 @@
 <!-- TESTIMONIALS -->
 <div class="section">
   <p class="section-label">Reviews</p>
-  <h2 class="section-title">People getting interviews</h2>
+  <h2 class="section-title">What our customers say</h2>
+  <p class="section-sub" style="margin-bottom: 2rem;">We are building our Trustpilot profile — early customers share their experience below.</p>
   <div class="testimonials">
     <div class="testimonial">
       <div class="stars">★★★★★</div>
@@ -341,6 +343,10 @@
   <h2 class="section-title">Common questions</h2>
   <div class="faq">
     <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Will my CV sound like it was written by AI?</button>
+      <p class="faq-a">No — and this is the most important thing we get right. Generic AI output is one of the biggest complaints about CV services. Every document is tailored to your specific experience and the exact job you are applying for. The result reads like a skilled human writer who understood your background. If it sounds generic, we will rewrite it.</p>
+    </div>
+    <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How quickly will I receive my document?</button>
       <p class="faq-a">All documents are delivered within 24 hours of your order. In many cases you'll receive it much sooner.</p>
     </div>
@@ -371,6 +377,7 @@
 </div>
 
 <!-- FOOTER -->
+<div style="background: white; border-top: 1px solid var(--cream); border-bottom: 1px solid var(--cream); padding: 1.75rem 2rem; text-align: center;"><div style="max-width: 700px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap;"><div style="font-size: 0.85rem; color: var(--muted);">🔒 Secure payments via Stripe</div><div style="font-size: 0.85rem; color: var(--muted);">📄 Word and PDF delivered</div><div style="font-size: 0.85rem; color: var(--muted);">⚡ Within 24 hours</div><div style="font-size: 0.85rem; color: var(--muted);">🇬🇧 UK-focused, ATS-optimised</div><div style="font-size: 0.85rem; color: var(--muted);">💳 No subscription — pay once</div></div></div>
 <footer>
   <strong>CVCraft AI</strong> &nbsp;·&nbsp; © 2026 &nbsp;·&nbsp;
   <a href="terms.html">Terms &amp; Conditions</a> &nbsp;·&nbsp;
