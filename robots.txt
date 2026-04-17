@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Host: https://cvcraft-ai.co.uk
+
+Sitemap: https://cvcraft-ai.co.uk/sitemap.xml
